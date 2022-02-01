@@ -24,14 +24,14 @@
 
                             <div class="row px-3">
                                 <div class="col-6">
-                                    <label for="password-1" class="form-label">Username</label>
-                                    <input id="password-1" type="text" class="form-control" value="name" disabled>
+                                    <label for="username-1" class="form-label">Username</label>
+                                    <input id="username-1" type="text" class="form-control" value="name" disabled>
                                 </div>
                                 <div class="col-6">
                                     <label for="password-1" class="form-label">Password</label>
                                     <div class="input-group mb-3">
                                         <input id="password-1" type="password" class="form-control" value="password" disabled>
-                                        <span class="input-group-text"><i class="fas fa-eye-slash" style="cursor: pointer;"></i></span>
+                                        <span class="input-group-text"><i class="fas fa-eye" style="cursor: pointer;" id="password-1-eye" onclick="showPw('password-1')"> </i></span>
                                     </div>
                                 </div>
                             </div>
@@ -43,6 +43,22 @@
         </div>
     </div>
 </div>
+
+<script>
+    function showPw(id) {
+        const field = document.getElementById(id);
+        const eye = document.getElementById(`${id}-eye`);
+        if(field.type == "text") {
+            field.type = "password";
+            eye.classList.remove("fa-eye-slash");
+            eye.classList.add("fa-eye");
+        } else {
+            field.type = "text";
+            eye.classList.add("fa-eye-slash");
+            eye.classList.remove("fa-eye");
+        }
+    }
+</script>
 
 <?php 
     include_once "includes/footer.php"
