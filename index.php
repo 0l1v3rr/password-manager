@@ -1,5 +1,15 @@
 <?php 
-    include_once "includes/head.php"
+    include_once "includes/head.php";
+    include_once "db/conn.php";
+
+    $userId = 1;
+    $res = $conn->query("SELECT * FROM passwords WHERE user_id = {$userId}");
+    $array = array();
+
+    while($item = mysqli_fetch_array($res, MYSQLI_ASSOC)) {
+        $array[] = $item;
+    }
+
 ?>
 
 <div class="container">
@@ -10,33 +20,44 @@
                     <h3 class="display-5 align-center">Password Manager</h3>
                     <hr class="mt-3 mb-4">
 
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row px-3">
-                                <div class="col-11"><h5><a href="www.site.com" target="_blank">www.site.com</a></h5></div>
-                                <div class="col-1" style="text-align: right;">
-                                    <!--<i class="far fa-star" style="cursor: pointer;" title="Add to favorites"></i>-->
-                                    <i class="fas fa-star text-warning" style="cursor: pointer;" title="Remove from favorites"></i>
-                                </div>
-
-                                <hr class="mt-2">
-                            </div>
-
-                            <div class="row px-3">
-                                <div class="col-6">
-                                    <label for="username-1" class="form-label">Username</label>
-                                    <input id="username-1" type="text" class="form-control" value="name" disabled>
-                                </div>
-                                <div class="col-6">
-                                    <label for="password-1" class="form-label">Password</label>
-                                    <div class="input-group mb-3">
-                                        <input id="password-1" type="password" class="form-control" value="password" disabled>
-                                        <span class="input-group-text"><i class="fas fa-eye" style="cursor: pointer;" id="password-1-eye" onclick="showPw('password-1')"> </i></span>
+                    <?php 
+                        $counter = 1;
+                        foreach($array as $item) {
+                            echo '
+                            <div class="card mt-3">
+                                <div class="card-body">
+                                    <div class="row px-3">
+                                        <div class="col-11"><h5><a href="'.$item["site"].'" target="_blank">'.$item["site"].'</a></h5></div>
+                                        <div class="col-1" style="text-align: right;">';
+                                            if($item["favorite"]) {
+                                                echo '<i class="fas fa-star text-warning" style="cursor: pointer;" title="Remove from favorites"></i>';
+                                            } else {
+                                                echo '<i class="far fa-star" style="cursor: pointer;" title="Add to favorites"></i>';
+                                            }
+                                            
+                                        echo '</div>
+        
+                                        <hr class="mt-2">
+                                    </div>
+        
+                                    <div class="row px-3">
+                                        <div class="col-6">
+                                            <label for="username-'.$counter.'" class="form-label">Username</label>
+                                            <input id="username-'.$counter.'" type="text" class="form-control" value="'.$item['username'].'" disabled>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="password-'.$counter.'" class="form-label">Password</label>
+                                            <div class="input-group mb-3">
+                                                <input id="password-'.$counter.'" type="password" class="form-control" value="'.$item["password"].'" disabled>
+                                                <span class="input-group-text"><i class="fas fa-eye" style="cursor: pointer;" id="password-'.$counter.'-eye" onclick="showPw(\'password-'.$counter.'\')"> </i></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                            </div>';
+                            $counter++;
+                        }
+                    ?>
 
                 </div>
             </div>
@@ -61,5 +82,5 @@
 </script>
 
 <?php 
-    include_once "includes/footer.php"
+    include_once "includes/footer.php";
 ?>
