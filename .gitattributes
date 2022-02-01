@@ -1,0 +1,6 @@
+*.sql   linguist-detectable=true
+*.sql   linguist-language=sql
+
+*.txt   text
+*.md    text
+*.markdown  text
