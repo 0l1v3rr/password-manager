@@ -3,7 +3,7 @@
     include_once "db/conn.php";
 
     $userId = 1;
-    $res = $conn->query("SELECT * FROM passwords WHERE user_id = {$userId}");
+    $res = $conn->query("SELECT * FROM passwords WHERE user_id = {$userId} ORDER BY (favorite IS TRUE) DESC, username;");
     $array = array();
 
     while($item = mysqli_fetch_array($res, MYSQLI_ASSOC)) {
@@ -14,7 +14,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-12 mt-4">
+        <div class="col-12 mt-4 mb-4">
             <div class="card">
                 <div class="card-body">
                     <h3 class="display-5 align-center">Password Manager</h3>
