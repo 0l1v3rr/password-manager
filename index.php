@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <h3 class="display-5 align-center">Password Manager</h3>
                     <hr class="mt-3 mb-4">
-                    <a href="new.php" class="mb-4"><button class="btn btn-success mb-2">New</button></a>
+                    <a href="new.php" class="mb-4"><button class="btn btn-success mb-2"><i class="far fa-bookmark"></i> &nbsp;New</button></a>
 
                     <?php 
                         $counter = 1;

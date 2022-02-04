@@ -35,8 +35,8 @@
                             <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                             <div class="form-text">We'll never share your password with anyone else.</div>
                         </div>
-                        <a href="index.php"><button type="button" class="btn btn-secondary">Back</button></a>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="index.php"><button type="button" class="btn btn-secondary"><i class="fas fa-arrow-circle-left"></i> &nbsp;Back</button></a>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i> &nbsp;Submit</button>
                     </form>
                 </div>
             </div>
