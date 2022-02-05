@@ -12,7 +12,7 @@
         $site = $_POST['site'];
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $userId = 1;
+        $userId = $_SESSION['unique_id'];
         $conn->query("INSERT INTO passwords(site, username, password, user_id) VALUES ('{$site}', '{$username}', '{$password}', {$userId});");
         header("Location:index.php");
     }

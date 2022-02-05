@@ -8,7 +8,7 @@
     include_once "includes/head.php";
     include_once "db/conn.php";
 
-    $userId = 1;
+    $userId = $_SESSION['unique_id'];
     $res = $conn->query("SELECT * FROM passwords WHERE user_id = {$userId} ORDER BY (favorite IS TRUE) DESC, username;");
     $array = array();
 
