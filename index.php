@@ -27,6 +27,7 @@
                     <h3 class="display-5 align-center">Password Manager</h3>
                     <hr class="mt-3 mb-4">
                     <a href="new.php" class="mb-4"><button class="btn btn-success mb-2"><i class="far fa-bookmark"></i> &nbsp;New</button></a>
+                    <a href="logout.php?id=<?php echo $_SESSION['unique_id']; ?>" class="mb-4"><button class="btn btn-danger mb-2"><i class="fas fa-sign-out-alt"></i> &nbsp;Log Out</button></a>
 
                     <?php 
                         $counter = 1;
