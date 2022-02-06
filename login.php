@@ -1,6 +1,10 @@
 <?php 
     session_start();
 
+    if(isset($_SESSION['unique_id'])) {
+        header("Location:index.php");
+    }
+
     include_once "includes/head.php";
     include_once "db/conn.php";
 ?>
