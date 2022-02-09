@@ -14,7 +14,7 @@
         <div class="col-12 mt-5 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="display-6 align-center">New</h1>
+                    <h1 class="display-6 align-center">Log In</h1>
                     <hr>
 
                     <?php
