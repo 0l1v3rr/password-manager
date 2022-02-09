@@ -65,7 +65,10 @@
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                             <input id="password2" name="password2" type="password" class="form-control" placeholder="Repeat Password">
                         </div>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> &nbsp;Sign In</button>
+
+                        <div>Already have an account? <a href="login.php">Log In here!</a></div>
+
+                        <button type="submit" class="btn btn-primary mt-3"><i class="fas fa-sign-in-alt"></i> &nbsp;Sign In</button>
                     </form>
                 </div>
             </div>

@@ -48,7 +48,10 @@
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                             <input id="password" name="password" type="password" class="form-control" placeholder="Password">
                         </div>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> &nbsp;Log In</button>
+
+                        <div>Don't have an account? <a href="registration.php">Sign In here!</a></div>
+
+                        <button type="submit" class="btn btn-primary mt-3"><i class="fas fa-sign-in-alt"></i> &nbsp;Log In</button>
                     </form>
                 </div>
             </div>
