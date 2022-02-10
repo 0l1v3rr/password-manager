@@ -26,12 +26,22 @@
 
                             if(!empty($username) && !empty($password) && !empty($email) && !empty($password2)) {
                                 if($password == $password2) {
-                                    mysqli_query($conn, "INSERT INTO users(username, email, password) VALUES ('{$username}', '{$email}', '{$password}');");
-                                    $sql = mysqli_query($conn, "SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}';");
+                                    $sql = mysqli_query($conn, "SELECT * FROM users WHERE username = '{$username}';");
                                     if(mysqli_num_rows($sql) > 0) {
-                                        $row = mysqli_fetch_assoc($sql);
-                                        $_SESSION['unique_id'] = $row['id'];
-                                        header("Location:index.php");
+                                        echo '<div class="alert alert-danger" role="alert">This username is already taken.</div>';
+                                    } else {
+                                        $sql2 = mysqli_query($conn, "SELECT * FROM users WHERE email = '{$email}';");
+                                        if(mysqli_num_rows($sql2) > 0) {
+                                            echo '<div class="alert alert-danger" role="alert">This email is already taken.</div>';
+                                        } else {
+                                            mysqli_query($conn, "INSERT INTO users(username, email, password) VALUES ('{$username}', '{$email}', '{$password}');");
+                                            $sql3 = mysqli_query($conn, "SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}';");
+                                            if(mysqli_num_rows($sql3) > 0) {
+                                                $row = mysqli_fetch_assoc($sql3);
+                                                $_SESSION['unique_id'] = $row['id'];
+                                                header("Location:index.php");
+                                            }
+                                        }
                                     }
                                 } else {
                                     echo '<div class="alert alert-danger" role="alert">The two passwords do not match.</div>';
