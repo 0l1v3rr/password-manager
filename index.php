@@ -37,14 +37,20 @@
                                 <div class="card-body">
                                     <div class="row px-3">
                                         <div class="col-11"><h5><a href="'.$item["site"].'" target="_blank">'.$item["site"].'</a></h5></div>
-                                        <div class="col-1" style="text-align: right;"><form method="post" action="php/favorite.php" id="favorite-'.$item['id'].'"><input type="hidden" name="favid" value="'.$item['id'].'">';
-                                            if($item["favorite"]) {
-                                                echo '<i class="fas fa-star text-warning" style="cursor: pointer;" title="Remove from favorites" onclick="document.getElementById(\'favorite-'.$item['id'].'\').submit();"></i>';
-                                            } else {
-                                                echo '<i class="far fa-star" style="cursor: pointer;" title="Add to favorites" onclick="document.getElementById(\'favorite-'.$item['id'].'\').submit();"></i>';
-                                            }
-                                            
-                                        echo '</form></div>
+                                        <div class="col-1" style="text-align: right;">
+                                            <form method="post" action="php/favorite.php" id="favorite-'.$item['id'].'">
+                                                <input type="hidden" name="favid" value="'.$item['id'].'">';
+                                                if($item["favorite"]) {
+                                                    echo '<i class="fas fa-star text-warning" style="cursor: pointer;" title="Remove from favorites" onclick="document.getElementById(\'favorite-'.$item['id'].'\').submit();"></i>';
+                                                } else {
+                                                    echo '<i class="far fa-star" style="cursor: pointer;" title="Add to favorites" onclick="document.getElementById(\'favorite-'.$item['id'].'\').submit();"></i>';
+                                                }
+                                        echo '</form>
+                                            <form method="post" action="php/delete.php" id="delete-'.$item['id'].'">
+                                                <input type="hidden" name="delid" value="'.$item['id'].'">
+                                                <i class="fas fa-trash-alt text-danger" style="cursor: pointer;" title="Delete" onclick="document.getElementById(\'delete-'.$item['id'].'\').submit();"></i>
+                                            </form>
+                                        </div>
         
                                         <hr class="mt-2">
                                     </div>
