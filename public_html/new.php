@@ -6,7 +6,7 @@
 ?>
 <?php 
     include_once "includes/head.php";
-    require_once("../../app/config.php");
+    require_once("../app/config.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $site = mysqli_real_escape_string($_POST['site']);

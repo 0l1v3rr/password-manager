@@ -6,7 +6,7 @@
 ?>
 <?php 
     include_once "includes/head.php";
-    require_once("../../app/config.php");
+    require_once("../app/config.php");
 
     $userId = $_SESSION['unique_id'];
     $res = $conn->query("SELECT * FROM passwords WHERE user_id = {$userId} ORDER BY (favorite IS TRUE) DESC, username;");

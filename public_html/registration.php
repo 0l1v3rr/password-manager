@@ -6,7 +6,7 @@
     }
 
     include_once "includes/head.php";
-    require_once("../../app/config.php");
+    require_once("../app/config.php");
 ?>
 
 <div class="container">
