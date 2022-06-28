@@ -6,7 +6,7 @@
     }
 
     include_once "includes/head.php";
-    include_once "db/conn.php";
+    require_once("../../app/config.php");
 ?>
 
 <div class="container">
@@ -34,8 +34,9 @@
                                         if(mysqli_num_rows($sql2) > 0) {
                                             echo '<div class="alert alert-danger" role="alert">This email is already taken.</div>';
                                         } else {
-                                            mysqli_query($conn, "INSERT INTO users(username, email, password) VALUES ('{$username}', '{$email}', '{$password}');");
-                                            $sql3 = mysqli_query($conn, "SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}';");
+                                            $hashedPasswort = password_hash($password, PASSWORD_DEFAULT);
+                                            mysqli_query($conn, "INSERT INTO users(username, email, password) VALUES ('{$username}', '{$email}', '{$hashedPasswort}');");
+                                            $sql3 = mysqli_query($conn, "SELECT * FROM users WHERE username = '{$username}' AND password = '{$hashedPasswort}';");
                                             if(mysqli_num_rows($sql3) > 0) {
                                                 $row = mysqli_fetch_assoc($sql3);
                                                 $_SESSION['unique_id'] = $row['id'];
