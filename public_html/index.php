@@ -6,7 +6,7 @@
 ?>
 <?php 
     include_once "includes/head.php";
-    include_once "db/conn.php";
+    require_once("../app/config.php");
 
     $userId = $_SESSION['unique_id'];
     $res = $conn->query("SELECT * FROM passwords WHERE user_id = {$userId} ORDER BY (favorite IS TRUE) DESC, username;");
@@ -32,6 +32,7 @@
                     <?php 
                         $counter = 1;
                         foreach($array as $item) {
+                            $decryptedPw = openssl_decrypt($item["password"], "AES-128-ECB", SECRETKEY);
                             echo '
                             <div class="card mt-3">
                                 <div class="card-body">
@@ -63,7 +64,7 @@
                                         <div class="col-6">
                                             <label for="password-'.$counter.'" class="form-label">Password</label>
                                             <div class="input-group mb-3">
-                                                <input id="password-'.$counter.'" type="password" class="form-control" value="'.$item["password"].'" disabled>
+                                                <input id="password-'.$counter.'" type="password" class="form-control" value="'.$decryptedPw.'" disabled>
                                                 <span class="input-group-text"><i class="fas fa-eye" style="cursor: pointer;" id="password-'.$counter.'-eye" onclick="showPw(\'password-'.$counter.'\')"> </i></span>
                                             </div>
                                         </div>

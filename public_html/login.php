@@ -6,7 +6,7 @@
     }
 
     include_once "includes/head.php";
-    include_once "db/conn.php";
+    require_once("../app/config.php");
 ?>
 
 <div class="container">
@@ -23,8 +23,16 @@
                             $password = mysqli_real_escape_string($conn, $_POST['password']);
 
                             if(!empty($username) && !empty($password)) {
-                                $sql = mysqli_query($conn, "SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}';");
-                                if(mysqli_num_rows($sql) > 0) {
+                                $sqlUserData = mysqli_query($conn, "SELECT password FROM users WHERE username = '{$username}' LIMIT 1;");
+                                $finfo = $sqlUserData->fetch_array(MYSQLI_NUM);
+
+                                if (!is_array($finfo) || !count($finfo) === 1) {
+                                    echo '<div class="alert alert-danger" role="alert">Sorry! An error occured.</div>';
+                                    exit;
+                                }
+
+                                if (password_verify($password, $finfo[0])) {
+                                    $sql = mysqli_query($conn, "SELECT * FROM users WHERE username = '{$username}' LIMIT 1;");
                                     $row = mysqli_fetch_assoc($sql);
                                     $_SESSION['unique_id'] = $row['id'];
                                     header("Location:index.php");

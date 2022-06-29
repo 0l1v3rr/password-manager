@@ -6,14 +6,15 @@
 ?>
 <?php 
     include_once "includes/head.php";
-    include_once "db/conn.php";
+    require_once("../app/config.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $site = $_POST['site'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $site = mysqli_real_escape_string($_POST['site']);
+        $username = mysqli_real_escape_string($_POST['username']);
+        $password = mysqli_real_escape_string($_POST['password']);
+        $hashedPasswort = openssl_encrypt($password, "AES-128-ECB", SECRETKEY);
         $userId = $_SESSION['unique_id'];
-        $conn->query("INSERT INTO passwords(site, username, password, user_id) VALUES ('{$site}', '{$username}', '{$password}', {$userId});");
+        $conn->query("INSERT INTO passwords(site, username, password, user_id) VALUES ('{$site}', '{$username}', '{$hashedPasswort}', {$userId});");
         header("Location:index.php");
     }
 
