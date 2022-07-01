@@ -9,9 +9,9 @@
     require_once("../app/config.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $site = mysqli_real_escape_string($_POST['site']);
-        $username = mysqli_real_escape_string($_POST['username']);
-        $password = mysqli_real_escape_string($_POST['password']);
+        $site = mysqli_real_escape_string($conn, $_POST['site']);
+        $username = mysqli_real_escape_string($conn, $_POST['username']);
+        $password = mysqli_real_escape_string($conn, $_POST['password']);
         $hashedPasswort = openssl_encrypt($password, "AES-128-ECB", SECRETKEY);
         $userId = $_SESSION['unique_id'];
         $conn->query("INSERT INTO passwords(site, username, password, user_id) VALUES ('{$site}', '{$username}', '{$hashedPasswort}', {$userId});");
